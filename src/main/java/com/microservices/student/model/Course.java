@@ -1,5 +1,6 @@
 package com.microservices.student.model;
 
+import com.microservices.student.Utill.CourseStatus;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,5 +18,13 @@ public class Course {
     @Column(nullable = false, unique = true)
     private String courseCode;
 
+    private String description;
+
+    @Enumerated(EnumType.STRING)
+    private CourseStatus status;  // ACTIVE, INACTIVE, COMPLETED
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
 
 }
