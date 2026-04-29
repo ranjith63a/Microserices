@@ -2,6 +2,7 @@ package com.microservices.student.model;
 
 import com.microservices.student.Utill.StudentStatus;
 import com.microservices.student.common.model.BaseEntity;
+import com.microservices.student.dto.StudentDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +18,7 @@ public class Student extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(nullable = false)
     private String firstName;
@@ -44,9 +45,8 @@ public class Student extends BaseEntity {
     private String phoneNumber;
 
 
-    public Student(int id, String firstName, String lastName, int age, String studentCode, String email,
+    public Student(String firstName, String lastName, int age, String studentCode, String email,
                    LocalDate dateOfBirth, StudentStatus status, String phoneNumber) {
-        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -55,5 +55,16 @@ public class Student extends BaseEntity {
         this.dateOfBirth = dateOfBirth;
         this.status = status;
         this.phoneNumber = phoneNumber;
+    }
+
+    public Student(StudentDTO request) {
+        this.firstName = request.getFirstName();
+        this.lastName = request.getLastName();
+        this.age = request.getAge();
+        this.studentCode = request.getStudentCode();
+        this.email = request.getEmail();
+        this.dateOfBirth = request.getDateOfBirth();
+        this.status = request.getStatus();
+        this.phoneNumber = request.getPhoneNumber();
     }
 }
