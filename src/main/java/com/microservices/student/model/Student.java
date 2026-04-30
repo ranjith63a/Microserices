@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "students")
@@ -46,7 +45,7 @@ public class Student extends BaseEntity {
 
 
     public Student(String firstName, String lastName, int age, String studentCode, String email,
-                   LocalDate dateOfBirth, StudentStatus status, String phoneNumber) {
+                   LocalDate dateOfBirth, StudentStatus status, String phoneNumber, Long id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -55,6 +54,7 @@ public class Student extends BaseEntity {
         this.dateOfBirth = dateOfBirth;
         this.status = status;
         this.phoneNumber = phoneNumber;
+        this.id = id;
     }
 
     public Student(StudentDTO request) {
@@ -67,4 +67,6 @@ public class Student extends BaseEntity {
         this.status = request.getStatus();
         this.phoneNumber = request.getPhoneNumber();
     }
+
+    public Student() {}
 }
