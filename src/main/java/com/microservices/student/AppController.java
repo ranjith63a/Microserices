@@ -11,8 +11,8 @@ public class AppController {
 
     @GetMapping("/")
     public ResponseEntity<String> home() {
-        log.info("Welcome To the Student Application");
-        return ResponseEntity.ok("Welcome To the Student Application");
+        log.info("Welcome To the Course Application");
+        return ResponseEntity.ok("Welcome To the Course Application");
     }
 
 }
