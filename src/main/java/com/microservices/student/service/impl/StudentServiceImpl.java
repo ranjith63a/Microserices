@@ -4,9 +4,11 @@ import com.microservices.student.dto.*;
 import com.microservices.student.dto.response.DepartmentResponse;
 import com.microservices.student.dto.response.EnrollmentResponse;
 import com.microservices.student.dto.response.StudentResponse;
+import com.microservices.student.event.StudentCreatedEvent;
 import com.microservices.student.model.Enrollment;
 import com.microservices.student.model.Student;
 import com.microservices.student.model.StudentAddress;
+import com.microservices.student.producer.EventProducer;
 import com.microservices.student.repository.EnrollmentRepository;
 import com.microservices.student.repository.StudentAddressRepository;
 import com.microservices.student.repository.StudentRepository;
@@ -34,11 +36,15 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private final StudentAddressRepository addressRepository;
 
-    public StudentServiceImpl(StudentRepository studentRepository, EnrollmentRepository enrollmentRepository, DepartmentClient departmentClient, StudentAddressRepository addressRepository) {
+    @Autowired
+    private final EventProducer eventProducer;
+
+    public StudentServiceImpl(StudentRepository studentRepository, EnrollmentRepository enrollmentRepository, DepartmentClient departmentClient, StudentAddressRepository addressRepository, EventProducer eventProducer) {
         this.studentRepository = studentRepository;
         this.enrollmentRepository = enrollmentRepository;
         this.departmentClient = departmentClient;
         this.addressRepository = addressRepository;
+        this.eventProducer = eventProducer;
     }
 
     @Override
@@ -106,6 +112,15 @@ public class StudentServiceImpl implements StudentService {
         enrollment = enrollmentRepository.save(enrollment);
 
         StudentResponse studentResponse = new StudentResponse(student, department);
+
+        // Send Mail After Student created
+        StudentCreatedEvent event = new StudentCreatedEvent();
+        event.setStudentId(student.getId());
+        event.setName(student.getFirstName() + " " + student.getLastName());
+        event.setEmail(student.getEmail());
+        event.setDepartmentCode(studentResponse.getDepartment().getDepartmentCode());
+
+        eventProducer.sendStudentCreatedEvent(event);
 
         return EnrollmentResponse.builder()
                 .id(enrollment.getId())
