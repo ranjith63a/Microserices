@@ -1,6 +1,6 @@
 package com.microservices.student.model;
 
-import com.microservices.student.Utill.StudentStatus;
+import com.microservices.student.model.enums.StudentStatus;
 import com.microservices.student.common.model.BaseEntity;
 import com.microservices.student.dto.StudentDTO;
 import jakarta.persistence.*;

@@ -1,6 +1,6 @@
 package com.microservices.student.dto;
 
-import com.microservices.student.Utill.StudentStatus;
+import com.microservices.student.model.enums.StudentStatus;
 import com.microservices.student.model.Student;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

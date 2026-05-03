@@ -1,4 +1,4 @@
-package com.microservices.student.Utill;
+package com.microservices.student.model.enums;
 
 
 public enum StudentStatus {

@@ -1,7 +1,9 @@
 package com.microservices.student.controller;
 
+import com.microservices.student.dto.EnrollmentDTO;
 import com.microservices.student.dto.StudentAddressDTO;
 import com.microservices.student.dto.StudentDTO;
+import com.microservices.student.dto.response.EnrollmentResponse;
 import com.microservices.student.service.impl.StudentServiceImpl;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
@@ -47,5 +49,11 @@ public class StudentController {
                                                             @ParameterObject Pageable pageable) {
         Page<StudentAddressDTO> studentAddress = studentService.findAllStudentAddress(id, state, city, pageable);
         return ResponseEntity.ok(studentAddress);
+    }
+
+    @PostMapping("enrollment")
+    public ResponseEntity<EnrollmentResponse> createEnrollment(@Valid @RequestBody EnrollmentDTO request) {
+        EnrollmentResponse response = studentService.createEnrolment(request);
+        return ResponseEntity.ok(response);
     }
 }
