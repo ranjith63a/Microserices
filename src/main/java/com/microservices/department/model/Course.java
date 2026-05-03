@@ -1,8 +1,8 @@
-package com.microservices.student.model;
+package com.microservices.department.model;
 
-import com.microservices.student.Utill.CourseStatus;
-import com.microservices.student.common.model.BaseEntity;
-import com.microservices.student.dto.CourseDTO;
+import com.microservices.department.Utill.CourseStatus;
+import com.microservices.department.common.model.BaseEntity;
+import com.microservices.department.dto.CourseDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

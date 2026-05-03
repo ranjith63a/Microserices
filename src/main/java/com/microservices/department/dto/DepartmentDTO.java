@@ -1,7 +1,8 @@
-package com.microservices.student.dto;
+package com.microservices.department.dto;
 
-import com.microservices.student.model.Department;
+import com.microservices.department.model.Department;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 

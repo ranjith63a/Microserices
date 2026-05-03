@@ -1,4 +1,4 @@
-package com.microservices.student;
+package com.microservices.department;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class AppController {
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public ResponseEntity<String> home() {
         log.info("Welcome To the Course Application");
         return ResponseEntity.ok("Welcome To the Course Application");

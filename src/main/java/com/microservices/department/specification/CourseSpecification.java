@@ -1,7 +1,7 @@
-package com.microservices.student.specification;
+package com.microservices.department.specification;
 
-import com.microservices.student.model.Course;
-import com.microservices.student.model.Department;
+import com.microservices.department.model.Course;
+import com.microservices.department.model.Department;
 import org.springframework.data.jpa.domain.Specification;
 
 public class CourseSpecification {

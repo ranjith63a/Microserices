@@ -1,6 +1,6 @@
-package com.microservices.student.service;
+package com.microservices.department.service;
 
-import com.microservices.student.dto.CourseDTO;
+import com.microservices.department.dto.CourseDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

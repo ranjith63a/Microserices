@@ -1,7 +1,7 @@
-package com.microservices.student.controller;
+package com.microservices.department.controller;
 
-import com.microservices.student.dto.CourseDTO;
-import com.microservices.student.service.impl.CourseServiceImpl;
+import com.microservices.department.dto.CourseDTO;
+import com.microservices.department.service.impl.CourseServiceImpl;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;

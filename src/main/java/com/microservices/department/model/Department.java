@@ -1,6 +1,6 @@
-package com.microservices.student.model;
+package com.microservices.department.model;
 
-import com.microservices.student.dto.DepartmentDTO;
+import com.microservices.department.dto.DepartmentDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

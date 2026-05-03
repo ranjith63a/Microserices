@@ -1,6 +1,6 @@
-package com.microservices.student.repository;
+package com.microservices.department.repository;
 
-import com.microservices.student.model.Course;
+import com.microservices.department.model.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;

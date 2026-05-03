@@ -1,12 +1,12 @@
-package com.microservices.student.service.impl;
+package com.microservices.department.service.impl;
 
-import com.microservices.student.dto.CourseDTO;
-import com.microservices.student.model.Course;
-import com.microservices.student.model.Department;
-import com.microservices.student.repository.CourseRepository;
-import com.microservices.student.repository.DepartmentRepository;
-import com.microservices.student.service.CourseService;
-import com.microservices.student.specification.CourseSpecification;
+import com.microservices.department.dto.CourseDTO;
+import com.microservices.department.model.Course;
+import com.microservices.department.model.Department;
+import com.microservices.department.repository.CourseRepository;
+import com.microservices.department.repository.DepartmentRepository;
+import com.microservices.department.service.CourseService;
+import com.microservices.department.specification.CourseSpecification;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
