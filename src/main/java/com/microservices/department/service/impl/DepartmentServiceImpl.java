@@ -5,12 +5,17 @@ import com.microservices.department.model.Department;
 import com.microservices.department.repository.DepartmentRepository;
 import com.microservices.department.service.DepartmentService;
 import com.microservices.department.specification.CourseSpecification;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
+@Slf4j
 public class DepartmentServiceImpl implements DepartmentService {
 
     private final DepartmentRepository departmentRepository;
@@ -48,5 +53,29 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .orElseThrow(() -> new RuntimeException("Department not found"));
 
         return new DepartmentDTO(department);
+    }
+
+    @Override
+    public DepartmentDTO getDepartmentById(Long id) {
+
+        Department department = departmentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Department not found"));
+
+        return new DepartmentDTO(department);
+    }
+
+    @Override
+    public List<DepartmentDTO> getAllDepartments() {
+        List<Department> departmentList = departmentRepository.findAll();
+
+        List<DepartmentDTO> departmentDTOList = departmentList.stream()
+                .map(department -> new DepartmentDTO(
+                        department.getId(),
+                        department.getDepartmentName(),
+                        department.getDepartmentCode()
+                ))
+                .collect(Collectors.toList());
+
+        return departmentDTOList;
     }
 }

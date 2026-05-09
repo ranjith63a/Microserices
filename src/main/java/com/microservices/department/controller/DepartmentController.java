@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/department")
 public class DepartmentController {
@@ -34,9 +36,24 @@ public class DepartmentController {
 
         return ResponseEntity.ok(departmentDTOS);
     }
+
     @GetMapping("/{code}")
     public ResponseEntity<DepartmentDTO> getDepartmentId(@PathVariable String code) {
         DepartmentDTO department = departmentService.getDepartmentByCode(code);
+
+        return ResponseEntity.ok(department);
+    }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<DepartmentDTO> getDepartmentId(@PathVariable Long id) {
+        DepartmentDTO department = departmentService.getDepartmentById(id);
+
+        return ResponseEntity.ok(department);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<DepartmentDTO>> getDepartmentId() {
+        List<DepartmentDTO> department = departmentService.getAllDepartments();
 
         return ResponseEntity.ok(department);
     }
