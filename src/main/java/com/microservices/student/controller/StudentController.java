@@ -1,8 +1,10 @@
 package com.microservices.student.controller;
 
+import com.microservices.student.client.DepartmentClient;
 import com.microservices.student.dto.EnrollmentDTO;
 import com.microservices.student.dto.StudentAddressDTO;
 import com.microservices.student.dto.StudentDTO;
+import com.microservices.student.dto.response.DepartmentResponse;
 import com.microservices.student.dto.response.EnrollmentResponse;
 import com.microservices.student.service.impl.StudentServiceImpl;
 import jakarta.validation.Valid;
@@ -19,6 +21,9 @@ public class StudentController {
 
     @Autowired
     StudentServiceImpl studentService;
+
+    @Autowired
+    DepartmentClient departmentClient;
 
     @PostMapping
     public ResponseEntity<Long> create(@Valid @RequestBody StudentDTO request) {
@@ -54,6 +59,12 @@ public class StudentController {
     @PostMapping("enrollment")
     public ResponseEntity<EnrollmentResponse> createEnrollment(@Valid @RequestBody EnrollmentDTO request) {
         EnrollmentResponse response = studentService.createEnrolment(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("getDepartment/{departmentCode}")
+    public ResponseEntity<DepartmentResponse> getDepartmentId(@PathVariable String departmentCode) {
+        DepartmentResponse response = departmentClient.getDepartmentByCode(departmentCode);
         return ResponseEntity.ok(response);
     }
 }
